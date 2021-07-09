@@ -7,24 +7,22 @@ namespace TDD
     {
         public int Add(string numbers)
         {
-            var splitNumbers = numbers.Split(',');
-
-            if(!splitNumbers.Any())
-            {
-                return 0;
-            }
+            var splitNumbers = numbers.Split(new[]{','}, StringSplitOptions.RemoveEmptyEntries);
 
             if(splitNumbers.Length == 1)
             {
-                if(splitNumbers[0].Length == 0)
+                if(!splitNumbers.Any())
                 {
                     return 0;
                 }
 
-                return int.Parse(splitNumbers[0]);
+                if(splitNumbers.Length == 1)
+                {
+                    return int.Parse(splitNumbers[0]);
+                }
             }
 
-            return int.Parse(splitNumbers[0]) + int.Parse(splitNumbers[2]);
+            return int.Parse(splitNumbers[0]) + int.Parse(splitNumbers[1]);
         }
     }
 }
